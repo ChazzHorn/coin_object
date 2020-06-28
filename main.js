@@ -1,10 +1,12 @@
 let coin = {
     state: 0,
+
     flip: function() {
         /* 1. Randomly set your coin object's "state" property to be either 
            0 or 1: use "this.state" to access the "state" property on this object.*/
-
-           this.state= Math.round(Math.random() * 1);
+           
+               this.state= Math.round(Math.random() * 1);
+               
              
     },
     
@@ -29,6 +31,8 @@ let coin = {
         let Tails = document.createElement('img');
         Tails.src = './images/Tails.png'
         Heads.src = './images/Heads.png'
+        Tails.style.height = '107px'
+        Heads.style.height = '100px'
 
         if (this.state === 0){
             return document.body.appendChild(Heads) 
@@ -36,15 +40,18 @@ let coin = {
         if (this.state === 1){
             return document.body.appendChild(Tails)
         }
-        
+
     },
     
     display20Flips: function(){
         let FlipsPTag =document.createElement('p')
-            let resultOfToString = this.state
+        // let flipsRandom = this.flip()
+       
         
-        for(counter=0; counter<20; counter++){
-            
+        for(let counter=0; counter<20; counter++){
+
+            this.flip()
+            let resultOfToString = this.toString()
             FlipsPTag.append(resultOfToString)
             document.body.appendChild(FlipsPTag)
             
@@ -53,9 +60,11 @@ let coin = {
     display20Images: function(){
         
         
-        for(counter1=0; counter1<20; counter1++){
+        for(let counter1=0; counter1<20; counter1++){
+
             let newDiv =document.createElement('div')
             newDiv.style.display='inline'
+            this.flip()
             let resultofToHtml = this.toHTML()
 
             
@@ -63,6 +72,7 @@ let coin = {
             document.body.appendChild(newDiv)
         }
     }
+
 };
 
 coin.flip()
